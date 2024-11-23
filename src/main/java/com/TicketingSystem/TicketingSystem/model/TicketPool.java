@@ -1,5 +1,6 @@
 package com.TicketingSystem.TicketingSystem.model;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
@@ -7,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 // Represents a ticket pool system that manages ticket creation, distribution, and logging.
+@Component
 public class TicketPool {
     // Synchronized list to hold tickets ensuring thread safety.
     private final List<String> tickets = Collections.synchronizedList(new ArrayList<>());
