@@ -15,13 +15,14 @@ public class TicketingVendorController {
         this.ticketingSystemService = ticketingSystemService;
     }
 
+    //POST /api/vendors/start?vendorsCount=2&ticketReleaseRate=5
     @PostMapping("/start")
     public ResponseEntity<String> startVendors(@RequestParam int vendorsCount, @RequestParam int ticketReleaseRate) {
        ticketingSystemService.startVendors(vendorsCount,ticketReleaseRate);
        return ResponseEntity.ok("Vendors started.");
     }
 
-
+    //POST /api/vendors/stop
     @PostMapping("/stop")
     public ResponseEntity<String> startVendors() {
         ticketingSystemService.stopVendors();
