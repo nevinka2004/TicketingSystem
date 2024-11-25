@@ -40,6 +40,7 @@ public class TicketingSystemService {
         vendorThreads.clear();
     }
 
+    // Starts multiple customer threads to retrieve tickets at a specified rate.
     public void startCustomer(int numberOfCustomers, int customerRetrievalRate) {
         for (int i = 0; i < numberOfCustomers; i++) {
             Customer customer  = new Customer(ticketPool, customerRetrievalRate);
@@ -49,6 +50,7 @@ public class TicketingSystemService {
         }
     }
 
+    // Stops all customer threads by interrupting them and clearing the list.
     public void stopCustomer() {
         for (int i = 0; i < customerThreads.size(); i++) {
             customerThreads.get(i).interrupt();
@@ -61,7 +63,7 @@ public class TicketingSystemService {
         return vendorThreads.size();
     }
 
-    // Returns the current number of active vendor threads.
+    // Returns the current number of active customer threads.
     public int getCustomerCount() {
         return customerThreads.size();
     }
