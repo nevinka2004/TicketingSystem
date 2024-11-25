@@ -1,5 +1,6 @@
 package com.TicketingSystem.TicketingSystem.service;
 
+import com.TicketingSystem.TicketingSystem.model.Customer;
 import com.TicketingSystem.TicketingSystem.model.TicketPool;
 import com.TicketingSystem.TicketingSystem.model.TicketVendor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 public class TicketingSystemService {
     private final TicketPool ticketPool;
     private final List<Thread> vendorThreads = new ArrayList<>();
+    private final List<Thread> customerThreads = new ArrayList<>();
 
     // Constructor to inject the ticket pool dependency.
     @Autowired
@@ -38,8 +40,29 @@ public class TicketingSystemService {
         vendorThreads.clear();
     }
 
+    public void startCustomer(int numberOfCustomers, int customerRetrievalRate) {
+        for (int i = 0; i < numberOfCustomers; i++) {
+            Customer customer  = new Customer(ticketPool, customerRetrievalRate);
+            Thread CustomerThread = new Thread(customer);
+            customerThreads.add(CustomerThread);
+            CustomerThread.start();
+        }
+    }
+
+    public void stopCustomer() {
+        for (int i = 0; i < customerThreads.size(); i++) {
+            customerThreads.get(i).interrupt();
+        }
+        customerThreads.clear();
+    }
+
     // Returns the current number of active vendor threads.
     public int getVendorCount() {
         return vendorThreads.size();
+    }
+
+    // Returns the current number of active vendor threads.
+    public int getCustomerCount() {
+        return customerThreads.size();
     }
 }
