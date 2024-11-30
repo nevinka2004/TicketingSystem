@@ -3,14 +3,9 @@ package com.TicketingSystem.TicketingSystem.model;
 
 // Implements the Runnable interface to allow concurrent execution.
 public class Customer implements Runnable {
-
-    // Reference to the ticket pool shared among customers.
     private TicketPool ticketPool;
-
-    // Rate at which the customer attempts to retrieve tickets (tickets per second).
     private int customerRetrievalRate;
 
-    // Constructor to initialize the ticket pool and retrieval rate for the customer.
     public Customer(TicketPool ticketPool, int customerRetrievalRate) {
         this.ticketPool = ticketPool;
         this.customerRetrievalRate = customerRetrievalRate;

@@ -44,9 +44,9 @@ public class TicketingSystemService {
     public void startCustomer(int numberOfCustomers, int customerRetrievalRate) {
         for (int i = 0; i < numberOfCustomers; i++) {
             Customer customer  = new Customer(ticketPool, customerRetrievalRate);
-            Thread CustomerThread = new Thread(customer);
-            customerThreads.add(CustomerThread);
-            CustomerThread.start();
+            Thread customerThread = new Thread(customer);
+            customerThreads.add(customerThread);
+            customerThread.start();
         }
     }
 

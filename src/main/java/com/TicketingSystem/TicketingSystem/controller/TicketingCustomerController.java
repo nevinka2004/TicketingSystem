@@ -17,20 +17,20 @@ public class TicketingCustomerController {
 
     //POST /api/customers/start
     @PostMapping("/start")
-    public ResponseEntity<String> startVendors(@RequestParam int CustomerCount, @RequestParam int customerRetrievalRate) {
-        ticketingSystemService.startVendors(CustomerCount,customerRetrievalRate);
+    public ResponseEntity<String> startCustomer(@RequestParam int customerCount, @RequestParam int customerRetrievalRate) {
+        ticketingSystemService.startCustomer(customerCount,customerRetrievalRate);
         return ResponseEntity.ok("Customers started.");
     }
 
     //POST /api/customers/stop
     @PostMapping("/stop")
-    public ResponseEntity<String> startVendors() {
+    public ResponseEntity<String> stopCustomers() {
         ticketingSystemService.stopCustomer();
         return ResponseEntity.ok("Customers stopped.");
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Integer> getVendorCount(){
+    public ResponseEntity<Integer> getCustomerCount(){
         return ResponseEntity.ok(ticketingSystemService.getCustomerCount());
     }
 }
